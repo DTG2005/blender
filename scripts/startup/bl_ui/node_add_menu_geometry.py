@@ -627,6 +627,7 @@ class NODE_MT_category_GEO_UTILITIES_MATH(Menu):
         node_add_menu.add_node_type(layout, "ShaderNodeClamp")
         node_add_menu.add_node_type(layout, "FunctionNodeCompare")
         node_add_menu.add_node_type(layout, "ShaderNodeFloatCurve")
+        node_add_menu.add_node_type(layout, "Testing")
         node_add_menu.add_node_type(layout, "FunctionNodeFloatToInt")
         node_add_menu.add_node_type(layout, "ShaderNodeMapRange")
         node_add_menu.add_node_type(layout, "ShaderNodeMath")
@@ -741,7 +742,6 @@ class NODE_MT_category_GEO_GROUP(Menu):
         layout = self.layout
         node_add_menu.draw_node_group_add_menu(context, layout)
         node_add_menu.draw_assets_for_catalog(layout, self.bl_label)
-
 
 class NODE_MT_geometry_node_add_all(Menu):
     bl_idname = "NODE_MT_geometry_node_add_all"
