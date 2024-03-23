@@ -35,9 +35,18 @@
 
 namespace blender::nodes::node_geo_test_cc {
 
-static void node_declare(NodeDeclarationBuilder &b) {}
+static void node_declare(NodeDeclarationBuilder &b)
+{
+  b.add_input<decl::Geometry>("Input");
+  b.add_output<decl::Geometry>("Output");
+}
 
-static void node_geo_exec(GeoNodeExecParams params) {}
+static void node_geo_exec(GeoNodeExecParams params)
+{
+  GeometrySet gs = params.extract_input<GeometrySet>("Input");
+  geometry::translate_geometry(gs, {0, 20, 0});
+  params.set_output("Output", gs);
+}
 
 static void node_register()
 {
