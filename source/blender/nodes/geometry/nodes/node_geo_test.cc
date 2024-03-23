@@ -37,14 +37,25 @@ namespace blender::nodes::node_geo_test_cc {
 
 static void node_declare(NodeDeclarationBuilder &b)
 {
-  b.add_input<decl::Geometry>("Input");
+  b.add_input<decl::String>("File");
+  b.add_input<decl::Geometry>("Geometry");
   b.add_output<decl::Geometry>("Output");
 }
 
 static void node_geo_exec(GeoNodeExecParams params)
 {
-  GeometrySet gs = params.extract_input<GeometrySet>("Input");
-  geometry::translate_geometry(gs, {0, 20, 0});
+  std::string filename = params.extract_input<std::string>("File");
+  std::fstream myFile;
+  myFile.open(filename);
+  std::string line1, line2, line3;
+  std::getline(myFile, line1);
+  std::getline(myFile, line2);
+  std::getline(myFile, line2);
+  float x = std::stof(line1);
+  float y = std::stof(line2);
+  float z = std::stof(line3);
+  GeometrySet gs = params.extract_input<GeometrySet>("Geometry");
+  geometry::translate_geometry(gs, {x, y, z});
   params.set_output("Output", gs);
 }
 
